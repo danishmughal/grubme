@@ -1,0 +1,41 @@
+  body{
+      background: #27AE60;
+    }
+
+    .demo-headline h1, h2{
+      color:white;
+    }
+
+    .demo-logo small{
+      color:white;
+    }
+
+    #logo{
+      width: 200px;
+      height: 200px;
+      position: relative;
+      bottom: 50px;
+    }
+
+   #fb-login-btn{
+   	position: relative;
+   	bottom: 100px;
+   }
+
+    
+
+    #slogan{
+      color:#27AE60;
+      text-align: center;
+  }
+
+#logo-top{
+	position: relative;
+	left: 230px;
+	bottom: 60px;
+}
+
+#home-tiles{
+	position: relative;
+	bottom: 240px;
+}
