@@ -14,7 +14,7 @@
 #
 
 class Meal < ActiveRecord::Base
-  attr_accessible :id, :title, :time_id, :location_id, :description, :mealtime, :location, :public, :user_id
+  attr_accessible :id, :title, :time_id, :location_id, :description, :mealtime, :location, :public, :user_id, :city, :state
   
   has_many :invitees
   belongs_to :user, :class_name => 'Meal', :foreign_key => 'user_id' # The creator of the meal

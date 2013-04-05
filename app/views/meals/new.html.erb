@@ -1,19 +1,30 @@
 <%= render 'layouts/header' %>      
 
+<div class="container">
 
-Create new meal
+  <div class="modal-header">
 
-<%= form_for :meal, :url => { :action => "create" }, :html => {:class => "nifty_form"} do |f| %>
-  Title: <%= f.text_field :title %><br />
-  Description: <%= f.text_field :description %><br />
-  When: <%= f.datetime_select :mealtime, :order => [:month, :day] %><br />
-  Location: <%= f.text_field :location %><br />
-  Make public: <%= f.check_box :public %>
+    <h3 id="myModalLabel" style="text-align:center">Create A Lunch!</h3>
+  </div>
+  <%= form_for :meal, :url => { :action => "create" }, :html => {:class => "nifty_form", :id => "create-lunch"} do |f| %>
+            <br>
+            <br>
+            <label>Lunch Title:</label>
+            <%= f.text_field :title, :placeholder => "E.g. Pizza hut" %>
+            <label>Lunch Description:</label>
+             <%= f.text_field :description, :placeholder=> "ex: Celebrating Mary's B-day! " %>
+            <label>Lunch Time:</label>
+            <%= f.datetime_select :mealtime, :order => [:month, :day] %>
+            <label>Lunch Location:</label>
+            <%= f.text_field :location %>
+            <label>Lunch City:</label>
+            <%= f.text_field :city %>
+            <label>Lunch State:</label>
+            <%= f.text_field :state %>
+            <%= f.check_box :public %>
+            <br>
+            <br>
+            <%= f.submit "Create" %>
+<% end %>  
 
-	<br>
-	<br>
-  Invite people:
-  <br>
-  <br>
-  <%= f.submit "Create" %>
-<% end %>
+</div>

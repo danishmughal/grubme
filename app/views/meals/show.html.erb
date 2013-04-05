@@ -1,0 +1,76 @@
+  <%= render 'layouts/header' %>      
+   
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 300px; }
+      body { height: 300px; margin: 0; padding: 0 }
+      #map-canvas { height: 300px; width: 100%; }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaZ6y5ImLfUW9Ne_HvnrU0T5E16Lkyv4w&sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var myLatling = new google.maps.LatLng(<%= @lat %>,  <%= @lng %>);
+        var mapOptions = {
+          center: myLatling,
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+         var marker = new google.maps.Marker({
+      position: myLatling,
+      map: map,
+      title:"<%= @meal.title %>"
+  });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="hero-unit">
+          <h1 id="lunch-title"><%= @meal.title %></h1>
+
+
+          <div id="map-canvas"></div>
+          <br>
+
+        <div class="row-fluid">
+          
+          <div class="span6">
+            <h3><%= @meal.description %></h3>
+            <br>
+            <h3><%= @meal.mealtime %></h3>
+            <br>
+            <h3>Date</h3>
+           <br>
+          </div>
+
+          <div class="span6">
+            <h3><%= @meal.location %></h3>
+            <br>
+            <% if @pricelevel %>
+            <h3>Price level: <%= @pricelevel %></h3>
+            <% end %>
+            <br>
+            <% if @rating %>
+            <h3>Rating: <%= @rating %></h3>
+            <% end %>
+           <br>
+          </div>
+
+
+        </div>
+
+          <div id="people_going">
+            <h3>People Going:</h3>
+          </div>
+      </div>
+
+
+
+    </div>

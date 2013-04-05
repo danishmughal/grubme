@@ -36,7 +36,24 @@ class MealsController < ApplicationController
 
 
 	def show
-		
+		@meal = Meal.find(params[:id])
+
+		require 'open-uri'
+		require 'json'
+
+		@location = @meal.location.sub ' ', '+'
+		@city = @meal.city
+		@state = @meal.state
+
+		@result = JSON.parse(open("https://maps.googleapis.com/maps/api/place/textsearch/json?query=+#{@location}+#{@city}+#{@state}+&sensor=true&key=AIzaSyDaZ6y5ImLfUW9Ne_HvnrU0T5E16Lkyv4w").read)
+
+		@pricelevel = @result["results"].first["price_level"]
+		@rating = @result["results"].first["rating"]
+
+
+		@lat = @result["results"].first["geometry"]["location"]["lat"]
+		@lng = @result["results"].first["geometry"]["location"]["lng"]
+
 	end
 
 end

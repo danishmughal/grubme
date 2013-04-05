@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20130405022217) do
     t.string   "title"
     t.string   "description"
     t.string   "location"
+    t.string   "city"
+    t.string   "state"
     t.boolean  "public",      :default => true
     t.datetime "mealtime"
   end

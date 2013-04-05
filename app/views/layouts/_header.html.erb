@@ -6,7 +6,7 @@
           <li><%= image_tag(current_user.image, {:class => "img-circle", :id => "person_pic"}) %></li>
        
           <li><h1><%= current_user.name %></h1></li>
-          <li id="rbtns"><a href="#myModal" role="button" class="btn btn-danger btn-large" data-toggle="modal">Create A Lunch!</a></li>          
+          <li id="rbtns"><a href="/meals/new" role="button" class="btn btn-danger btn-large" data-toggle="modal">Create A Lunch!</a></li>          
           <li id="rbtns"><a href="/signout" class="btn btn-danger btn-large">Log Out</a></li>
           
         </ul>
@@ -16,32 +16,34 @@
 
 
  
-<!-- Modal -->
+<!-- Modal
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel" style="text-align:center">Create A Lunch!</h3>
   </div>
   <div class="modal-body">
-     <form id="create-lunch">
+  <%= form_for :meal, :url => { :action => "create" }, :html => {:class => "nifty_form", :id => "create-lunch"} do |f| %>
        <fieldset>
-          <label>Lunch Title:</label>
-            <input type="text" placeholder="ex: Pizza Hut">
+            <label>Lunch Title:</label>
+            <%= f.text_field :title, :placeholder => "E.g. Pizza hut" %>
             <label>Lunch Description:</label>
-            <input type="text" placeholder="ex: Celebrating Mary's B-day! ">
+             <%= f.text_field :description, :placeholder=> "ex: Celebrating Mary's B-day! " %>
             <label>Lunch Time:</label>
-            <input type="text" placeholder="ex: 8:00 pm ">
-            <label>Lunch Date:</label>
-            <input type="text" placeholder="ex: Feb 28, 2013 ">
+            <%= f.datetime_select :mealtime, :order => [:month, :day] %>
             <label>Lunch Location:</label>
-            <input type="text" placeholder="ex: San Francisco, CA ">
+            <%= f.text_field :location %>
+            <%= f.check_box :public %>
+            <br>
+            <br>
             <span class="help-block">Check the Details One More Time!</span>
+                <%= f.submit "Create" %>
+<% end %>  
+
        </fieldset>
-      </form>
   </div>
   <div class="modal-footer">
     <button class="btn btn-danger btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button type="submit" class="btn btn-danger btn-large">Submit</button>
-  </div>
 </div>
-    
+</div>
+-->

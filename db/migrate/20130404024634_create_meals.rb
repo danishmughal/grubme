@@ -7,10 +7,14 @@ class CreateMeals < ActiveRecord::Migration
       t.string :title
       t.string :description
       t.string :location
+      t.string :city
+      t.string :state
 
       t.boolean :public, :default => true
 
       t.datetime :mealtime
+
+
 
     end
   end
