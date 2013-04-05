@@ -1,14 +1,123 @@
-Homepage of the app.
-Currently being made.
+<% if current_user %> <!-- Check if user is logged in -->
 
-<br />
-<br />
 
-<div id="user_nav">
-  <% if current_user %>
-    Signed in as <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
-</div>
+  <%= render 'layouts/header' %>      
+
+      <div class="row-fluid">
+
+
+        <div class="span6">
+          <h1 id="lunch-heading">Attending Lunches</h1>
+
+          <div class="well">
+            <% if @pubmeals %>
+             <% @pubmeals.each do |pubmeal|%>
+              <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
+              <% if @attendingmeal %>
+                You are attending this event
+               <div id="firstc">
+                <% @creator = User.find(pubmeal.user_id) %>
+                  <%= image_tag(@creator.image, {:class => "img-square" }) %>
+
+                   <h1><%= pubmeal.title %></h1>
+                </div>
+                <div id="secondc">
+                   <h3><%= pubmeal.mealtime %></h3>
+                   <h3><%= pubmeal.location %></h3>
+                   <p id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></p>
+                </div>
+            <br />
+            <br />
+            <br />
+           <% end %>
+          <% end %>
+          <% end %>
+
+          </div><!--/.well -->
+        </div><!--/span-->
+        
+        <div class="span6">
+          <h1 id="lunch-heading">Public Lunches</h1>
+          <div class="well">
+            <% if @pubmeals %>
+             <% @pubmeals.each do |pubmeal|%>
+              <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
+              <% if @attendingmeal %>
+                You are attending this event
+              <% end %>
+               <div id="firstc">
+                <% @creator = User.find(pubmeal.user_id) %>
+                  <%= image_tag(@creator.image, {:class => "img-square" }) %>
+
+                   <h1><%= pubmeal.title %></h1>
+                </div>
+                <div id="secondc">
+                   <h3><%= pubmeal.mealtime %></h3>
+                   <h3><%= pubmeal.location %></h3>
+                   <p id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></p>
+                </div>
+            <br />
+            <br />
+            <br />
+           <% end %>
+          <% end %>
+
+          </div><!--/.well -->
+        </div><!--/span-->
+       
+        </div>
+      
+<% else %> <!-- Page that is displayed if user isn't logged in (landing page!)  -->
+
+<div class="container">
+     
+    <div class="row">
+      <div id="logo-top" class="span6">
+        <div class="demo-headline">
+          <h1 class="demo-logo">
+            
+            GrubMe
+            <%= image_tag("sandwich-white.png", { :id => "logo" }) %></h1>
+            <%= link_to image_tag("fb-login.png", { :id => "fb-login-btn" }), "/auth/facebook", id: "sign_in" %>            
+        </div>
+      </div>
+    </div>      
+   
+    <div id="home-tiles"> 
+      <div class="row demo-tiles">
+        <div class="span4">
+          <div class="tile">
+            <%= image_tag("timer.png", { :class => "tile-image" }) %>
+            <h3 class="tile-title">Decide Fast</h3>
+            <p>Don't waste your valuable time debating where to go for lunch. Decisions for lunch are made quickly and efficiently with GrubMe.</p>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="tile">
+            <%= image_tag("use.svg", { :class => "tile-image" }) %>
+            <h3 class="tile-title">Easy to Use</h3>
+            <p>Grabbing lunch with co-workers or friends was never so easy. Our system saves you time and energy which equals money.</p>
+          </div>
+        </div>
+
+        <div class="span4">
+          <div class="tile">
+            <%= image_tag("vote.png", {:class => "tile-image"}) %>
+            <h3 class="tile-title">You Choose</h3>
+            <p>Tired of having your co-workers or friends choose bad locations for lunch. With GrubMe, you have a say in every decision. </p>
+          </div>
+        </div>
+
+        </div>
+      </div> <!-- /tiles -->
+
+    </div> <!-- /container -->
+
+
+
+<% end %>
+
+
+  </body>
+</html>

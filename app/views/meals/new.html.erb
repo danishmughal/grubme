@@ -1,0 +1,19 @@
+<%= render 'layouts/header' %>      
+
+
+Create new meal
+
+<%= form_for :meal, :url => { :action => "create" }, :html => {:class => "nifty_form"} do |f| %>
+  Title: <%= f.text_field :title %><br />
+  Description: <%= f.text_field :description %><br />
+  When: <%= f.datetime_select :mealtime, :order => [:month, :day] %><br />
+  Location: <%= f.text_field :location %><br />
+  Make public: <%= f.check_box :public %>
+
+	<br>
+	<br>
+  Invite people:
+  <br>
+  <br>
+  <%= f.submit "Create" %>
+<% end %>

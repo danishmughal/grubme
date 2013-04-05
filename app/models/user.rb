@@ -18,6 +18,9 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :image, :location, :name, :oauth_expires_at, :oauth_token, :provider, :uid
 
+  has_many :meals, :class_name => 'User', :foreign_key => 'user_id'
+  
+
   #Method used for omniauth when logging in or creating a new user
   #If user exists he/she is logged in
   #If not the new user is created and the following values are saved in the database
@@ -34,5 +37,4 @@ class User < ActiveRecord::Base
 	    user.save!
 		end
 	end
-
 end

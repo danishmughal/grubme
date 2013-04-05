@@ -5,6 +5,11 @@ Dropby::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
 
+  resources :meals
+
+  match '/attendmeal' => 'meals#attendmeal', :as => 'attendmeal'
+
+
   root to: "static_pages#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
