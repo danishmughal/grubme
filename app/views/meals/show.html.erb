@@ -51,7 +51,7 @@
           </div>
 
           <div class="span6">
-            <h3><%= @meal.location %></h3>
+            <h3>Location: <%= @address %></h3>
             <br>
             <% if @pricelevel %>
             <h3>Price level: <%= @pricelevel %></h3>
@@ -69,6 +69,13 @@
           <div id="people_going">
             <h3>People Going:</h3>
           </div>
+            <Br>
+            <br>
+            <% @people.each do |p| %>
+              <%= image_tag(p.image) %>
+            <% end %>
+            <%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => @meal.id %>
+
       </div>
 
 

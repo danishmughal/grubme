@@ -34,6 +34,15 @@ class MealsController < ApplicationController
 		redirect_to :root
 	end
 
+	def cancel
+		@mealid = params[:id]
+
+		@attending = Attending.where(:user_id => current_user.id, :lunch_id => @mealid).first.destroy
+
+		redirect_to :root
+
+	end
+
 
 	def show
 		@meal = Meal.find(params[:id])
@@ -50,9 +59,20 @@ class MealsController < ApplicationController
 		@pricelevel = @result["results"].first["price_level"]
 		@rating = @result["results"].first["rating"]
 
+		@address = @result["results"].first["formatted_address"]
+
 
 		@lat = @result["results"].first["geometry"]["location"]["lat"]
 		@lng = @result["results"].first["geometry"]["location"]["lng"]
+
+
+		@people = []
+
+		@attendees = Attending.where(:lunch_id => @meal.id)
+		@attendees.each do |a|
+			@user = User.find(a.user_id)
+			@people.push(@user)
+		end
 
 	end
 

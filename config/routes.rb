@@ -8,6 +8,7 @@ Dropby::Application.routes.draw do
   resources :meals
 
   match '/attendmeal' => 'meals#attendmeal', :as => 'attendmeal'
+  match '/cancel' => 'meals#cancel', :as => 'cancel'
 
 
   root to: "static_pages#home"
