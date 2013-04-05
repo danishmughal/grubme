@@ -51,8 +51,8 @@ class MealsController < ApplicationController
 		require 'json'
 
 		@location = @meal.location.sub ' ', '+'
-		@city = @meal.city
-		@state = @meal.state
+		@city = @meal.city.sub ' ', '+'
+		@state = @meal.state.sub ' ', '+'
 
 		@result = JSON.parse(open("https://maps.googleapis.com/maps/api/place/textsearch/json?query=+#{@location}+#{@city}+#{@state}+&sensor=true&key=AIzaSyDaZ6y5ImLfUW9Ne_HvnrU0T5E16Lkyv4w").read)
 

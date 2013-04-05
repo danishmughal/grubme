@@ -1,6 +1,9 @@
 body{
-      background: #27AE60;
+      background:#95A5A6;
     }
+body .well{
+
+}
 
 .demo-headline h1, h2{
       color:white;
@@ -21,8 +24,6 @@ body{
     position: relative;
     bottom: 100px;
    }
-
-    
 
 #slogan{
       color:#27AE60;
@@ -72,6 +73,11 @@ body{
   text-align: right;
 }
 
+#join a{
+  color:white;
+  text-decoration:none;
+}
+
 .circle {
   width:50px;
   height:50px;
@@ -90,21 +96,67 @@ body{
 
 #lunch-heading{
   color: white;
+  text-align:center;
 }
 
-.nav li{
-  margin-left: 150px;
-}
 
 .nav a{
   color: white;
   text-decoration: none;
 }
 
-#rbtns{
+#nav-pic{
+  margin-left:200px;
+  margin-right:100px;
+}
+
+
+#nav-center{
+  color: #34495E;
+  margin-left:100px;
+  display:inline;
+}
+
+#nav-center li{
+  display:inline;
+}
+
+
+#nav-logo{
+  color: #34495E;
+  margin-left:10px;
+}
+
+#nav-create{
+  margin-left:350px;
+  margin-right:50px;
   position: relative;
   top: 10px;
+  color:white;
 }
+
+#nav-logout{
+  top: 10px;
+  color:white;
+}
+
+#nav-create a{
+  color:white;
+}
+
+#nav-logout a{
+  color:white;
+}
+
+#nav-logout a:hover{
+  color:#E74C3C;
+}
+
+
+#nav-create a:hover{
+  color:#E74C3C;
+}
+
 
 #firstc h1, img{
   display: inline;
@@ -126,18 +178,23 @@ body{
   margin-bottom: 5px;
 }
 
-#rbtns a{
-  color: white;
-  text-decoration: none;
-}
-
-#rbtns a:hover{
-  color:black;
-}
 
 #lunch-title{
-  text-align: center;
-  margin-bottom: 50px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+#lunch-title a{
+  text-decoration:none;
+  color:#34495E;
+}
+
+#lunch-title a:hover{
+  color:#E74C3C;
+}
+
+#lunch-location{
+  text-align:center;
 }
 
 #people_going h3, img{
@@ -155,4 +212,17 @@ body .hero-unit{
 
 #create-lunch{
   text-align: center;
+}
+
+#meal-form label{
+  color:white;
+}
+
+#meal-form h1{
+  color:white;
+  text-align:center;
+}
+
+#public-check checkbox{
+  display:none;
 }

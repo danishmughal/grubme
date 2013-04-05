@@ -17,12 +17,13 @@
                <div id="firstc">
                 <% @creator = User.find(pubmeal.user_id) %>
                   <%= image_tag(@creator.image, {:class => "img-square" }) %>
-                   <h1><%= link_to pubmeal.title, pubmeal %></h1>
+                   <h1 class="pull-right" id="lunch-title"><%= link_to pubmeal.location, pubmeal %></h1>
                 </div>
                 <div id="secondc">
-                   <h3><%= pubmeal.mealtime %></h3>
-                   <h3><%= pubmeal.location %></h3>
-                   <p id="join"><%= link_to 'Not Attending', :controller => "meals", :action => "cancel", :id => pubmeal.id %></p>
+                   <h4>Event:<%= pubmeal.title %></h4>
+                   <h4>Date/Time: <%= pubmeal.mealtime %></h4>
+                   <h4>Info: <%= pubmeal.description %></h4>
+                   <button class="btn btn-danger pull-right" id="join"><%= link_to 'Not Attending', :controller => "meals", :action => "cancel", :id => pubmeal.id %></button>
                 </div>
             <br />
             <br />
@@ -42,16 +43,16 @@
               <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
               <% if @attendingmeal %>
               <% else %>
-               <div id="firstc">
+                <div id="firstc">
                 <% @creator = User.find(pubmeal.user_id) %>
                   <%= image_tag(@creator.image, {:class => "img-square" }) %>
-
-                   <h1><%= link_to pubmeal.title, pubmeal %></h1>
+                   <h1 class="pull-right" id="lunch-title"><%= link_to pubmeal.location, pubmeal %></h1>
                 </div>
                 <div id="secondc">
-                   <h3><%= pubmeal.mealtime %></h3>
-                   <h3><%= pubmeal.location %></h3>
-                   <p id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></p>
+                   <h4>Event:<%= pubmeal.title %></h4>
+                   <h4>Date/Time: <%= pubmeal.mealtime %></h4>
+                   <h4>Info: <%= pubmeal.description %></h4>
+                   <button class="btn btn-success pull-right" id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></button>
                 </div>
             <br />
             <br />
