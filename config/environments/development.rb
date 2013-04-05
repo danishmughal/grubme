@@ -36,4 +36,5 @@ Dropby::Application.configure do
   config.assets.debug = true
 
   config.assets.precompile += %w( bootstrap.css )
+  config.assets.precompile += %w( bootstrap.js )
 end
