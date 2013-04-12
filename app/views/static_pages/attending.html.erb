@@ -1,0 +1,79 @@
+<% if current_user %> <!-- Check if user is logged in -->
+
+
+  <%= render 'layouts/header' %>      
+
+  <div id="home">
+        
+          <div class="well">
+
+            <div id="thetabs">
+                <ul id="thetabs" class="nav nav-tabs">
+                <li>
+                  <a href="/">Public</a>
+                </li>
+                <li class="active"><a href="/attending">Attending</a></li>
+                <li> <a href="/meals/new">New Lunch</a></li>
+              </ul>
+            </div>
+
+            <% if @pubmeals %>
+               <% @pubmeals.order("mealtime ASC").each do |pubmeal|%>
+
+
+                  <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
+                  <% if @attendingmeal %>
+
+                      <div class="row-fluid" id="displaybox">
+
+                      <div class="span1">
+                      <% @creator = User.find(pubmeal.user_id) %>
+                        <%= image_tag(@creator.image.sub('square', 'large'), {:id => "listimage", :class=> ".hidden-phone"}) %>
+                      </div>
+
+                      <div class="span4 eventbox">
+                        <p id="eventlocation"><%= link_to pubmeal.location, pubmeal %></p>
+                         <p id="eventtitle"><%= link_to pubmeal.title, pubmeal %></p>
+                         <p id="eventtime"><%= link_to pubmeal.mealtime.strftime("%b %e, %l:%M %p"), pubmeal %></p>
+                         <p id="eventdesc"><%= link_to pubmeal.description, pubmeal %></p>
+                      </div>
+
+                      <div class="span3">
+                        <% @attenders = Attending.where("lunch_id = ?", pubmeal.id).count %>
+                        <center>
+                          <p id="eventattenders"><%= @attenders %></p>
+                          <% if @attenders == 1 %>
+                          Person Attending
+                          <% else %>
+                          People Attending
+                          <% end %>
+                        <br>
+                        <button class="btn btn-danger" id="join"><%= link_to 'Not Attending', :controller => "meals", :action => "cancel", :id => pubmeal.id %></button>
+                        </center>
+                      </div>
+
+                      <div class="4">
+                        <% @coords = Meal.get_coordinates(pubmeal) %>
+                        <center>
+                        <%= image_tag("http://maps.googleapis.com/maps/api/streetview?size=200x150&location=#{@coords[0]},%20#{@coords[1]}&fov=120&sensor=false") %>
+                        </center>
+                      </div>
+
+                    </div>
+
+                  <% else %>
+
+                  <% end %>
+
+
+               <% end %>
+            <% end %>
+
+          </div><!--/.well -->
+        </div><!--/span-->       
+        
+
+
+
+
+<% end %> <!-- Page that is displayed if user isn't logged in (landing page!)  -->

@@ -1,34 +1,36 @@
 <%= render 'layouts/header' %>      
 
-<div class="container">
+<div class="container-fluid">
 
-  <div class="modal-header">
+  <div class="well">
 
-    
-  </div>
+    <div id="thetabs">
+        <ul id="thetabs" class="nav nav-tabs">
+        <li>
+          <a href="/">Public</a>
+        </li>
+        <li><a href="/attending">Attending</a></li>
+        <li class="active"><a href="/meals/new">New Lunch</a></li>
+      </ul>
+    </div>
 
   <div id="meal-form">
-    <h1>Create A Lunch!</h1>
   <%= form_for :meal, :url => { :action => "create" }, :html => {:class => "nifty_form", :id => "create-lunch"} do |f| %>
             <br>
             <br>
-            <label>Lunch Title:</label>
-            <%= f.text_field :title, :placeholder => "Ex: Team Bonding" %>
-            <label>Lunch Description:</label>
-             <%= f.text_field :description, :placeholder=> "Ex: Celebrating Mary's B-day! " %>
-            <label>Lunch Time:</label>
-            <%= f.datetime_select :mealtime, :order => [:month, :day] %>
-            <label>Lunch Location:</label>
-            <%= f.text_field :location,:placeholder=> "Ex: Chipotle "  %>
-            <label>Lunch City:</label>
-            <%= f.text_field :city,:placeholder=> "Ex: Champaign "  %>
-            <label>Lunch State:</label>
-            <%= f.text_field :state,:placeholder=> "Ex: Illinois"  %>
+            <%= f.text_field :title, :required => true, :placeholder => "Lunch Title", :id => "field" %><br>
+             <%= f.text_field :description, :required => true, :placeholder=> "Description", :id => "field" %><br>
+            <%= f.datetime_picker :mealtime, :required => true, :order => [:month, :day], :dateFormat => "yy-mm-dd", :ampm => "true" %><br>
+            <%= f.text_field :location, :required => true,:placeholder=> "Location", :id => "field"  %><br>
+            <%= f.text_field :city, :required => true,:placeholder=> "City" , :id => "field" %><br>
+            <%= f.text_field :state, :required => true,:placeholder=> "State", :id => "field"  %><br>
            
             <br>
             <br>
-            <%= f.submit "Create" %>
+            <%= f.submit "Create Lunch", :class => "btn btn-large", :style => "width:200px" %>
 <% end %>  
+</div>
+
 </div>
 
 </div>

@@ -36,193 +36,136 @@ body .well{
   bottom: 60px;
 }
 
+
 #home-tiles{
   position: relative;
   bottom: 240px;
 }
 
-#home{
-  margin-top: 30px;
-}
 
-#lunch h1,img{
-  display: inline-block;
-}
-
-#lunch h1{
-  margin-left: 150px;
-
-}
-
-#lunch2 h1{
-  margin-left: 250px;
-  display: inline-block;
-
-}
-
-#lunch-second-row h1{
-  display: inline;
-  text-align: right;
-}
-
-#lunch-location{
-  text-align: right;
-}
-
-#join{
-  text-align: right;
-}
-
-#join a{
-  color:white;
-  text-decoration:none;
-}
-
-.circle {
-  width:50px;
-  height:50px;
-  border-radius:25px;
-  font-size:20px;
-  color:#fff;
-  line-height:100px;
-  text-align:center;
-  background:#e74c3c;
-  /* width and height can be anything, as long as they're equal */
-}
-
-#circles-userprof {
-  display: inline-block;
-}
-
-#lunch-heading{
-  color: white;
+#meal-form {
   text-align:center;
 }
 
-
-.nav a{
-  color: white;
+#thetabs ul li a {
   text-decoration: none;
 }
 
-#nav-pic{
-  margin-left:200px;
-  margin-right:100px;
+
+#displaybox {
+  height: 200px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 50px;
 }
 
 
-#nav-center{
-  color: #34495E;
-  margin-left:100px;
-  display:inline;
+#join {
+  margin-top: 10px;
+  color: white;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
 }
 
-#nav-center li{
-  display:inline;
+#home{
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
+.eventbox {
+  p {
+    color: black;
+    margin: none;
 
-#nav-logo{
-  color: #34495E;
-  margin-left:10px;
-}
+  }
 
-#nav-create{
-  margin-left:350px;
-  margin-right:50px;
-  margin-bottom:30;
-  
-  color:white;
-}
+  a {
+    color: black;
+    text-decoration: none;
+  }
 
-#nav-logout{
-  margin-bottom:30px;
-  color:white;
-}
+  #eventtitle {
+  }
 
-#nav-create a{
-  color:white;
-}
+  #eventtime {
 
-#nav-logout a{
-  color:white;
-}
+  }
 
-#nav-logout a:hover{
-  color:#E74C3C;
-}
+  #eventdesc {
+
+  }
+
+  #eventlocation {
+    font-size: 20px;
+    font-style: bold;
+
+  }
 
 
-#nav-create a:hover{
-  color:#E74C3C;
-}
+}  
+
+#eventattenders {
+    font-size: 30px;
+    font-weight: bold;
+  }
 
 
-#firstc h1, img{
-  display: inline;
-}
-
-#firstc h1{
-  margin-left: 100px;
-}
-
-#secondc h3,p{
-  display: inline;
-    margin-left: 60px;
-}
-
-#person_pic{
-  height: 65px;
-  width: 65px;
-  margin-top: 13px;
-  margin-bottom: 5px;
-}
-
-
-#lunch-title{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-#lunch-title a{
-  text-decoration:none;
-  color:#34495E;
-}
-
-#lunch-title a:hover{
-  color:#E74C3C;
-}
-
-#lunch-location{
-  text-align:center;
-}
-
-#people_going h3, img{
-  display: inline;
-}
-
-#people_going img{
-  width: 50px;
-  height: 50px;
-}
-
-body .hero-unit{
-  margin-top:20px;
-}
-
-#create-lunch{
+#field {
   text-align: center;
+  color: black;
+
 }
 
-#meal-form label{
-  color:white;
+
+
+#lunch-title {
+  font-size: 60px;
+  margin-bottom: 5px;
+
 }
 
-#meal-form h1{
-  color:white;
-  text-align:center;
+#lunch-address {
+  font-size: 20px;
+  margin-bottom: 15px;
+
 }
 
-#public-check checkbox{
-  display:none;
+#map-canvas {
+  margin-bottom: 40px
+}
+
+#lunch-sv {
+
+}
+
+#lunch-location {
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+#lunch-time {
+  font-size: 25px;
+
+}
+
+
+#lunch-description {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+
+#lunch-price, #lunch-rating{
+  img {
+    height: 18px
+  }
+}
+
+.brand {
+  color: white;
+  text-decoration: none;
+  font-size: 50px;
 }

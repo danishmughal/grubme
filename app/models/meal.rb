@@ -19,4 +19,28 @@ class Meal < ActiveRecord::Base
   has_many :invitees
   belongs_to :user, :class_name => 'Meal', :foreign_key => 'user_id' # The creator of the meal
 
+
+  def self.get_coordinates(meal)
+  		require 'open-uri'
+		require 'json'
+
+		@location = meal.location.sub ' ', '+'
+		@city = meal.city.sub ' ', '+'
+		@state = meal.state.sub ' ', '+'
+
+		@result = JSON.parse(open("https://maps.googleapis.com/maps/api/place/textsearch/json?query=+#{@location}+#{@city}+#{@state}+&sensor=true&key=AIzaSyAcUa4Iz1dC1x-0iFSZsFBT1kCvyXmQ1Zs").read)
+
+		@pricelevel = @result["results"].first["price_level"]
+		@rating = @result["results"].first["rating"]
+
+		@address = @result["results"].first["formatted_address"]
+
+		@latlng = []
+
+		@latlng[0] = @result["results"].first["geometry"]["location"]["lat"]
+		@latlng[1] = @result["results"].first["geometry"]["location"]["lng"]
+
+		return @latlng
+  end
+
 end

@@ -12,6 +12,7 @@ Dropby::Application.routes.draw do
 
 
   root to: "static_pages#home"
+  match '/attending' => 'static_pages#attending'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

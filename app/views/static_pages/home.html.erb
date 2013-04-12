@@ -3,67 +3,87 @@
 
   <%= render 'layouts/header' %>      
 
-      <div class="row-fluid">
 
-        <div class="span6">
-          <h1 id="lunch-heading">Attending Lunches</h1>
+<div class="container-fluid">
 
-          <div class="well">
-            <% if @pubmeals %>
-             <% @pubmeals.each do |pubmeal|%>
-              <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
-              <% if @attendingmeal %>
-               <div id="firstc">
-                <% @creator = User.find(pubmeal.user_id) %>
-                  <%= image_tag(@creator.image, {:class => "img-square" }) %>
-                   <h1 class="pull-right" id="lunch-title"><%= link_to pubmeal.location, pubmeal %></h1>
-                </div>
-                <div id="secondc">
-                   <h4>Event:<%= pubmeal.title %></h4>
-                   <h4>Date/Time: <%= pubmeal.mealtime %></h4>
-                   <h4>Info: <%= pubmeal.description %></h4>
-                   <button class="btn btn-danger pull-right" id="join"><%= link_to 'Not Attending', :controller => "meals", :action => "cancel", :id => pubmeal.id %></button>
-                </div>
-            <br />
-            <br />
-            <br />
-           <% end %>
-          <% end %>
-          <% end %>
 
-          </div><!--/.well -->
-        </div><!--/span-->
+  <div id="home">
         
-        <div class="span6">
-          <h1 id="lunch-heading">Public Lunches</h1>
           <div class="well">
+
+            <div id="thetabs">
+                <ul id="thetabs" class="nav nav-tabs">
+                <li class="active">
+                  <a href="/">Public</a>
+                </li>
+                <li><a href="/attending">Attending</a></li>
+                <li> <a href="/meals/new">New Lunch</a></li>
+              </ul>
+            </div>
+
             <% if @pubmeals %>
-             <% @pubmeals.each do |pubmeal|%>
-              <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
-              <% if @attendingmeal %>
-              <% else %>
-                <div id="firstc">
-                <% @creator = User.find(pubmeal.user_id) %>
-                  <%= image_tag(@creator.image, {:class => "img-square" }) %>
-                   <h1 class="pull-right" id="lunch-title"><%= link_to pubmeal.location, pubmeal %></h1>
-                </div>
-                <div id="secondc">
-                   <h4>Event:<%= pubmeal.title %></h4>
-                   <h4>Date/Time: <%= pubmeal.mealtime %></h4>
-                   <h4>Info: <%= pubmeal.description %></h4>
-                   <button class="btn btn-success pull-right" id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></button>
-                </div>
-            <br />
-            <br />
-            <br />
+               <% @pubmeals.where('mealtime > ?', DateTime.now).order("mealtime ASC").each do |pubmeal|%>
+
+                  <% @attendingmeal =  Attending.find_by_user_id_and_lunch_id(current_user.id, pubmeal.id) %>
+                  <% if @attendingmeal %>
+                  <% else %>
+
+                    <div class="row-fluid" id="displaybox">
+
+                      <div class="span3">
+                        <!--
+                      <% @creator = User.find(pubmeal.user_id) %>
+                      <%= image_tag(@creator.image.sub('square', 'large'), {:class => "listimage" }) %>
+                        
+                                                -->
+
+                        <% @coords = Meal.get_coordinates(pubmeal) %>
+
+                        <center>
+                        <%= image_tag("http://maps.googleapis.com/maps/api/streetview?size=200x150&location=#{@coords[0]},%20#{@coords[1]}&fov=120&sensor=false")  %>
+                        </center>
+
+                      </div>
+
+
+                      <div class="span4 eventbox">
+                        <p id="eventlocation"><%= link_to pubmeal.location, pubmeal %></p>
+                         <p id="eventtitle"><%= link_to pubmeal.title, pubmeal %></p>
+                         <p id="eventtime"><%= link_to pubmeal.mealtime.strftime("%b %e, %l:%M %p"), pubmeal %></p>
+                         <p id="eventdesc"><%= link_to pubmeal.description, pubmeal %></p>
+                      </div>
+
+                      <div class="span3">
+                        <%= image_tag("http://maps.googleapis.com/maps/api/staticmap?center=#{@coords[0]},%20#{@coords[1]}&zoom=14&markers=color:blue%7Clabel:Lunch%7C#{@coords[0]},%20#{@coords[1]}&size=200x150&sensor=false") %>
+                      </div>
+
+                      <div class="span2 pull-right">
+                        <% @attenders = Attending.where("lunch_id = ?", pubmeal.id).count %>
+                        <center>
+                          <p id="eventattenders"><%= @attenders %></p>
+                          <% if @attenders == 1 %>
+                          Person Attending
+                          <% else %>
+                          People Attending
+                          <% end %>
+                        <br>
+                       <button class="btn btn-success" id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => pubmeal.id %></button>
+                        </center>
+                      </div>
+
+
+                    </div>
+
+
+                  <% end %>
+
+
+               <% end %>
             <% end %>
-           <% end %>
-          <% end %>
 
           </div><!--/.well -->
-        </div><!--/span-->
-       
-        </div>
+        </div><!--/span-->       
+        
       
 <% else %> <!-- Page that is displayed if user isn't logged in (landing page!)  -->
 

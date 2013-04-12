@@ -1,22 +1,16 @@
-
-
-<div class="row-fluid">
-   <div class="navbar">
-      <div class="navbar-inner">
-        <ul class="nav">
-          <li class="brand"><h1 id="nav-logo">GrubMe</h1></li>
-          <li id="nav-pic"><%= image_tag(current_user.image, {:class => "img-square", :id => "person_pic"}) %></li>
-          <li id="nav-name"><h1><%= current_user.name %></h1></li>
-          <li id="nav-create"><a href="/meals/new" role="button" class="btn btn-success btn-large" data-toggle="modal">Create A Lunch!</a></li>          
-          <li id="nav-logout"><a href="/signout" class="btn btn-danger btn-large">Log Out</a></li>
-          
-        </ul>
-      </div>
-   </div>
+<div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="/">GrubMe</a>
+    <ul class="nav pull-right">
+      <li><%= image_tag(current_user.image, {:class => "img-square", :id => "person_pic"}) %></li>
+      <li><a><%= current_user.name %></a></li>
+      <li><a href="/meals/new">Create A Lunch!</a></li>
+      <li><a href="/signout">Log Out</a></li>
+    </ul>
+  </div>
 </div>
 
 
- 
 <!-- Modal
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">

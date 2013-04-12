@@ -1,5 +1,7 @@
-  <%= render 'layouts/header' %>      
+<%= render 'layouts/header' %>      
    
+
+<div class="container-fluid" id="home">
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
@@ -29,53 +31,76 @@
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="hero-unit">
-          <h1 id="lunch-title"><%= @meal.title %></h1>
-          <h3 id="lunch-location">Location: <%= @address %></h3>
 
-          <div id="map-canvas"></div>
-          <br>
+<div class="container-fluid">
+  <div class="well">
+    <center>
+      <div id="lunch-title"><%= @meal.title %></div>
+      <div id="lunch-address">Location: <%= @address %></div>
+      <div id="map-canvas"></div>
+    </center>
 
-        <div class="row-fluid">
-          
-          <div class="span6">
-            <h3>Info:<%= @meal.description %></h3>
-            <br>
-            <h3>Time:<%= @meal.mealtime %></h3>
-          </div>
+    <div class="row-fluid">
+      <div class="span4">
+          <div id="lunch-sv">
+            <% @coords = Meal.get_coordinates(@meal) %>
 
-          <div class="span6">
-            
-            <br>
-            <% if @pricelevel %>
-            <h3>Price level: <%= @pricelevel %></h3>
-            <% end %>
-            <br>
-            <% if @rating %>
-            <h3>Rating: <%= @rating %></h3>
-            <% end %>
-           <br>
-          </div>
-
-
-        </div>
-
-          <div id="people_going">
-            <h3>People Going:</h3>
-            <% @people.each do |p| %>
-              <%= image_tag(p.image) %>
-            <% end %>
-           <button class="btn btn-success btn-large pull-right" id="join"><%= link_to 'Join', :controller => "meals", :action => "attendmeal", :id => @meal.id %></button>
+            <center>
+            <%= image_tag("http://maps.googleapis.com/maps/api/streetview?size=400x300&location=#{@coords[0]},%20#{@coords[1]}&fov=120&sensor=false")  %>
+            </center>
 
           </div>
-            <Br>
-            <br>
-            
       </div>
 
+      <div class="span4">
+          <div id="lunch-location"><%= @meal.location %></div>
+          <div id="lunch-time"><%= @meal.mealtime.strftime("%b %e, %l:%M %p") %></div>
+          <div id="lunch-description"><%= @meal.description %></div>
 
+
+          <% if @pricelevel %>
+            <div id="lunch-price">Price level: 
+              <% @pricelevel.round.times do  %>
+              <%= image_tag("dolla.svg") %>
+              <% end %>
+              (<%= @pricelevel %>)
+
+            </div>
+          <% end %>
+
+          <% if @rating %>
+            <div id="lunch-rating">Rating: 
+              <% @rating.round.times do %>
+              <%= image_tag("stars.svg") %>
+              <% end %>
+              (<%= @rating.round %>)
+            </div>
+          <% end %>
+
+
+
+      </div>
+
+      <div class="span4">
+        <div id="lunch-time">People attending:</div><br>
+        <% @people.each do |p| %>
+          <%= image_tag(p.image) %>
+        <% end %>
+      </div>
 
     </div>
+
+<br>
+<br>
+
+
+
+
+  </div>
+</div>
+
+            
+
+
+
+</div>
