@@ -28,7 +28,7 @@ class Meal < ActiveRecord::Base
 		@city = meal.city.sub ' ', '+'
 		@state = meal.state.sub ' ', '+'
 
-		@result = JSON.parse(open("https://maps.googleapis.com/maps/api/place/textsearch/json?query=+#{@location}+#{@city}+#{@state}+&sensor=true&key=AIzaSyAcUa4Iz1dC1x-0iFSZsFBT1kCvyXmQ1Zs").read)
+		@result = JSON.parse(open("https://maps.googleapis.com/maps/api/place/textsearch/json?query=+#{@location}+#{@city}+#{@state}+&sensor=true&key=AIzaSyDaZ6y5ImLfUW9Ne_HvnrU0T5E16Lkyv4w").read)
 
 		@pricelevel = @result["results"].first["price_level"]
 		@rating = @result["results"].first["rating"]
