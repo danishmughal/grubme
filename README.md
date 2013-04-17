@@ -5,4 +5,4 @@ Illinois Coding Competition - Team DropBy
 
 Members: Danish Mughal, Neel Kothari, Suket Karnawat.
 
-www.grubme.heroku.com
+[grubme.heroku.com](http:grubme.heroku.com/)
